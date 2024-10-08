@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RELATÓRIO DIÁRIO DE OBRA</title>
+
+    <!-- Inclusão do Favicon -->
+    <link
+      rel="shortcut icon"
+      href="/static/images/favicon.ico"
+      type="image/x-icon"
+    />
+
+    <!-- Inclusão do CSS -->
+    <link rel="stylesheet" href="../static/css/style.css" />
+
+    <!-- Inclusão do jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Inclusão do jQuery UI e seu CSS -->
+    <link
+      rel="stylesheet"
+      href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+    />
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <!-- Inclusão do Timepicker e seu CSS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.14.1/jquery.timepicker.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.14.1/jquery.timepicker.min.css"
+    />
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>RELATÓRIO DIÁRIO DE OBRA (RDO)</h1>
+      <form
+        id="form"
+        action="/submit"
+        method="POST"
+        enctype="multipart/form-data"
+      >
+        <div class="form-group">
+          <label for="folha">FOLHA:</label>
+          <input
+            type="number"
+            class="form-control"
+            name="folha"
+            id="folha"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="cliente">CLIENTE:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="cliente"
+            id="cliente"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="contrato">CONTRATO:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="contrato"
+            id="contrato"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="escopo">ESCOPO:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="escopo"
+            id="escopo"
+            required
+          />
+        </div>
+
+        <!-- Agrupamento de campos de data -->
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label for="inicio">INÍCIO:</label>
+            <input
+              type="text"
+              class="form-control datepicker"
+              name="inicio"
+              id="inicio"
+              required
+              placeholder="dd/mm/aaaa"
+            />
+          </div>
+          <div class="form-group col-md-4">
+            <label for="termino">TÉRMINO:</label>
+            <input
+              type="text"
+              class="form-control datepicker"
+              name="termino"
+              id="termino"
+              required
+              placeholder="dd/mm/aaaa"
+            />
+          </div>
+          <div class="form-group col-md-4">
+            <label for="dia">DIA:</label>
+            <input
+              type="text"
+              class="form-control datepicker"
+              name="dia"
+              id="dia"
+              required
+              placeholder="dd/mm/aaaa"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="horario_trabalho">HORÁRIO DE TRABALHO:</label>
+          <input
+            type="text"
+            class="form-control timepicker"
+            name="horario_trabalho"
+            id="horario_trabalho"
+            required
+            placeholder="Digite o horário de trabalho, ex: 08:00 às 18:00"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="atividades">ATIVIDADES:</label>
+          <textarea
+            class="form-control"
+            name="atividades"
+            id="atividades"
+            required
+          ></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="observacoes_contratante"
+            >OBSERVAÇÕES DA CONTRATANTE:</label
+          >
+          <textarea
+            class="form-control"
+            name="observacoes_contratante"
+            id="observacoes_contratante"
+          ></textarea>
+        </div>
+
+        <!-- Seção de Registro Fotográfico -->
+        <div class="form-group">
+          <label for="foto">REGISTRO FOTOGRÁFICO 1:</label>
+          <input
+            type="file"
+            class="form-control-file"
+            name="foto"
+            id="foto"
+            accept="image/*"
+          />
+        </div>
+        <div class="form-group">
+          <label for="foto2">REGISTRO FOTOGRÁFICO 2:</label>
+          <input
+            type="file"
+            class="form-control-file"
+            name="foto2"
+            id="foto2"
+            accept="image/*"
+          />
+        </div>
+        <div class="form-group">
+          <label for="foto3">REGISTRO FOTOGRÁFICO 3:</label>
+          <input
+            type="file"
+            class="form-control-file"
+            name="foto3"
+            id="foto3"
+            accept="image/*"
+          />
+        </div>
+
+        <!-- Seção de Condições de Tempo -->
+        <fieldset class="weather-conditions">
+          <legend>CONDIÇÕES DE TEMPO</legend>
+          <div class="form-group">
+            <div class="form-check form-check-inline">
+              <input
+                type="radio"
+                id="tempo_bom"
+                name="tempo"
+                value="tempo_bom"
+                aria-label="Tempo bom"
+                class="form-check-input"
+              />
+              <label for="tempo_bom" class="form-check-label">TEMPO BOM</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input
+                type="radio"
+                id="chuva_leve"
+                name="tempo"
+                value="chuva_leve"
+                aria-label="Chuva leve"
+                class="form-check-input"
+              />
+              <label for="chuva_leve" class="form-check-label"
+                >CHUVA LEVE</label
+              >
+            </div>
+            <div class="form-check form-check-inline">
+              <input
+                type="radio"
+                id="chuva_forte"
+                name="tempo"
+                value="chuva_forte"
+                aria-label="Chuva forte"
+                class="form-check-input"
+              />
+              <label for="chuva_forte" class="form-check-label"
+                >CHUVA FORTE</label
+              >
+            </div>
+            <div class="form-check form-check-inline">
+              <input
+                type="radio"
+                id="chuva_fora_do_turno"
+                name="tempo"
+                value="chuva_fora_do_turno"
+                aria-label="Chuva fora do turno"
+                class="form-check-input"
+              />
+              <label for="chuva_fora_do_turno" class="form-check-label"
+                >CHUVA FORA DO TURNO</label
+              >
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- Seção de Acidentes -->
+        <fieldset class="accident-status">
+          <legend>ACIDENTES</legend>
+          <div class="form-group">
+            <div class="form-check form-check-inline">
+              <input
+                type="radio"
+                id="NÃO_HOUVE"
+                name="ACIDENTES"
+                value="NÃO_HOUVE"
+                aria-label="Não houve"
+                class="form-check-input"
+              />
+              <label for="NÃO_HOUVE" class="form-check-label">NÃO HOUVE</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input
+                type="radio"
+                id="SEM_AFASTAMENTO"
+                name="ACIDENTES"
+                value="SEM_AFASTAMENTO"
+                aria-label="Sem afastamento"
+                class="form-check-input"
+              />
+              <label for="SEM_AFASTAMENTO" class="form-check-label"
+                >SEM AFASTAMENTO</label
+              >
+            </div>
+            <div class="form-check form-check-inline">
+              <input
+                type="radio"
+                id="COM_AFASTAMENTO"
+                name="ACIDENTES"
+                value="COM_AFASTAMENTO"
+                aria-label="Com afastamento"
+                class="form-check-input"
+              />
+              <label for="COM_AFASTAMENTO" class="form-check-label"
+                >COM AFASTAMENTO</label
+              >
+            </div>
+            <div class="form-check form-check-inline">
+              <input
+                type="radio"
+                id="DANOS_MATERIAIS"
+                name="ACIDENTES"
+                value="DANOS_MATERIAIS"
+                aria-label="Danos materiais"
+                class="form-check-input"
+              />
+              <label for="DANOS_MATERIAIS" class="form-check-label"
+                >DANOS MATERIAIS</label
+              >
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- Seção de Condições da Área -->
+        <fieldset class="area-conditions">
+          <legend>CONDIÇÕES DA ÁREA</legend>
+          <div class="form-group">
+            <div class="form-check form-check-inline">
+              <input
+                type="radio"
+                id="OPERÁVEL"
+                name="Area"
+                value="OPERÁVEL"
+                aria-label="Operável"
+                class="form-check-input"
+              />
+              <label for="OPERÁVEL" class="form-check-label">OPERÁVEL</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input
+                type="radio"
+                id="OPERÁVEL_PARCIALMENTE"
+                name="Area"
+                value="OPERÁVEL_PARCIALMENTE"
+                aria-label="Operável parcialmente"
+                class="form-check-input"
+              />
+              <label for="OPERÁVEL_PARCIALMENTE" class="form-check-label"
+                >OPERÁVEL PARCIALMENTE</label
+              >
+            </div>
+            <div class="form-check form-check-inline">
+              <input
+                type="radio"
+                id="INOPERÁVEL"
+                name="Area"
+                value="INOPERÁVEL"
+                aria-label="Inoperável"
+                class="form-check-input"
+              />
+              <label for="INOPERÁVEL" class="form-check-label"
+                >INOPERÁVEL</label
+              >
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- Seção de M.O Indireta -->
+        <fieldset class="mo-indireta">
+          <legend>M.O Indireta</legend>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Descrição</th>
+                  <th>PRES.</th>
+                  <th>F.C.</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for i in range(1, 5) %}
+                <tr>
+                  <td>
+                    <input
+                      type="text"
+                      name="mo_indireta_desc_{{ i }}"
+                      class="form-control"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="number"
+                      name="mo_indireta_pres_{{ i }}"
+                      class="form-control"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="number"
+                      name="mo_indireta_fc_{{ i }}"
+                      class="form-control"
+                    />
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </fieldset>
+
+        <!-- Seção de M.O Direta -->
+        <fieldset class="mo-direta">
+          <legend>M.O Direta</legend>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Descrição</th>
+                  <th>PRES.</th>
+                  <th>F.C.</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for i in range(1, 5) %}
+                <tr>
+                  <td>
+                    <input
+                      type="text"
+                      name="mo_direta_desc_{{ i }}"
+                      class="form-control"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="number"
+                      name="mo_direta_pres_{{ i }}"
+                      class="form-control"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="number"
+                      name="mo_direta_fc_{{ i }}"
+                      class="form-control"
+                    />
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </fieldset>
+
+        <!-- Seção de Subempreiteiros -->
+        <fieldset class="subempreiteiros">
+          <legend>Subempreiteiros</legend>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Descrição</th>
+                  <th>PRES.</th>
+                  <th>F.C.</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for i in range(1, 5) %}
+                <tr>
+                  <td>
+                    <input
+                      type="text"
+                      name="subempreiteiro_desc_{{ i }}"
+                      class="form-control"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="number"
+                      name="subempreiteiro_pres_{{ i }}"
+                      class="form-control"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="number"
+                      name="subempreiteiro_fc_{{ i }}"
+                      class="form-control"
+                    />
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </fieldset>
+
+        <!-- Seção de Equipamentos -->
+        <fieldset class="equipamentos">
+          <legend>Equipamentos</legend>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Descrição</th>
+                  <th>Quantidade</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for i in range(1, 5) %}
+                <tr>
+                  <td>
+                    <input
+                      type="text"
+                      name="equipamentos_desc_{{ i }}"
+                      class="form-control"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="number"
+                      name="equipamentos_quant_{{ i }}"
+                      class="form-control"
+                    />
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </fieldset>
+
+        <button type="submit" class="btn btn-primary">Download</button>
+      </form>
+    </div>
+
+    <!-- Inclusão do Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <script src="../static/js/app.js" defer></script>
+  </body>
+</html>
