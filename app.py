@@ -65,7 +65,7 @@ def adicionar_imagem_centralizada(worksheet, caminho_imagem, cell):
 def atualizar_excel(dados, arquivo_excel):
     wb = openpyxl.load_workbook(arquivo_excel)
     ws = wb.active
-
+    
     # Atualizando os campos específicos
     ws['Y3'] = converter_para_numero(dados['folha'])
     ws['C5'] = dados['cliente']
@@ -270,4 +270,4 @@ if __name__ == '__main__':
     # Inicializar o banco de dados
     init_db()
     
-    app.run()
+    app.run(debug=True)

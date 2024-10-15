@@ -1,7 +1,18 @@
 document.addEventListener("DOMContentLoaded", function () {
   console.log("jQuery version:", $.fn.jquery); // Verifica se jQuery está carregado
   console.log("Timepicker available:", typeof $.fn.timepicker !== "undefined"); // Verifica se timepicker está carregado
+
   const clienteInput = document.getElementById("cliente"); // Recebe o nome do cliente
+  const diaInput = document.getElementById("dia"); // Recebe o campo de dia
+
+  // Define a data atual no campo "DIA" ao carregar a página
+  const today = new Date();
+  const formattedDate = today.toLocaleDateString("pt-BR", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  });
+  diaInput.value = formattedDate;
 
   const form = document.querySelector("form");
 
@@ -10,19 +21,6 @@ document.addEventListener("DOMContentLoaded", function () {
     dateFormat: "dd/mm/yy",
     changeMonth: true,
     changeYear: true,
-  });
-
-  // Inicializar Timepicker
-  $(".timepicker").timepicker({
-    timeFormat: "HH:mm:ss",
-    interval: 60,
-    minTime: "00",
-    maxTime: "18:00",
-    defaultTime: "00", // Horário inicial padrão
-    startTime: "08:00", // Hora de início
-    dynamic: false,
-    dropdown: true,
-    scrollbar: true,
   });
 
   form.addEventListener("submit", function (event) {
@@ -47,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Criar um link para baixar o arquivo Excel
         const url = window.URL.createObjectURL(blob);
         const a = document.createElement("a");
-        // Puxar o nomde do cliente do input
+        // Puxar o nome do cliente do input
         const nomeCliente = clienteInput.value.trim(); // 'cliente';
         // Usa 'cliente' como padrão se vazio
         a.href = url;
