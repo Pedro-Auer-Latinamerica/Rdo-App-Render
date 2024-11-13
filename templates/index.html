@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 
 <head>
   <meta charset="UTF-8" />
@@ -7,7 +7,7 @@
   <title>RELATÓRIO DIÁRIO DE OBRA</title>
 
   <!-- Inclusão do Favicon -->
-  <link rel="shortcut icon" href="/static/images/favicon.ico" type="image/x-icon" />
+  <link rel="shortcut icon" href="../static/images/favicon.ico" type="image/x-icon" />
   <!-- Inclusão de ícones nos botões-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
@@ -31,22 +31,43 @@
     <form id="form" action="/submit" method="POST" enctype="multipart/form-data">
       <div class="form-group">
         <label for="folha">FOLHA:</label>
-        <input type="number" class="form-control" name="folha" id="folha" required />
+        <input type="number" class="form-control incremental-input" name="folha" id="folha" required
+          placeholder="Clique para gerar" />
       </div>
 
       <div class="form-group">
         <label for="cliente">CLIENTE:</label>
-        <input type="text" class="form-control" name="cliente" id="cliente" required />
+        <input type="text" class="form-control" name="cliente" id="cliente" list="opcoes_cliente" required
+          placeholder="Selecione ou digite..." />
+
+        <!-- Lista de opções de clientes -->
+        <datalist id="opcoes_cliente">
+          <option value="TechnipFMC">
+          <option value="Andritz">
+          <option value="Bracell">
+          <option value="Evonik">
+          <option value="Proteinorte">
+          <option value="ArceloMital">
+          <option value="EJA Estaleiro Jurong Aracruz">
+          <option value="SunCoke Energy">
+          <option value="Garoto">
+          <option value="Suzano">
+          <option value="Petrobras">
+          <option value="Estel">
+        </datalist>
       </div>
 
       <div class="form-group">
         <label for="contrato">CONTRATO:</label>
-        <input type="text" class="form-control" name="contrato" id="contrato" required />
+        <input type="number" class="form-control " name="contrato" id="contrato" maxlength="10" required
+          placeholder="Clique para gerar" />
       </div>
+
 
       <div class="form-group">
         <label for="escopo">ESCOPO:</label>
-        <input type="text" class="form-control" name="escopo" id="escopo" required />
+        <input type="text" class="form-control" name="escopo" id="escopo" required
+          placeholder="Digite o escopo do projeto" />
       </div>
 
       <!-- Agrupamento de campos de data -->
@@ -69,32 +90,73 @@
 
       <div class="form-group">
         <label for="horario_trabalho">HORÁRIO DE TRABALHO:</label>
-        <input type="text" class="form-control timepicker" name="horario_trabalho" id="horario_trabalho" required
-          placeholder="Digite o horário de trabalho, ex: 8:00 às 18:00 hs" />
+        <input type="text" class="form-control" name="horario_trabalho" id="horario_trabalho" required
+          placeholder="Registro de Horário de Trabalho" readonly />
       </div>
+      <div class="form-group mt-2">
+        <label for="horario_inicio">Horário de Início:</label>
+        <input type="time" id="horario_inicio" class="form-control" required />
+      </div>
+      <div class="form-group mt-2">
+        <label for="horario_termino">Horário de Término:</label>
+        <input type="time" id="horario_termino" class="form-control" required />
+      </div>
+      <div class="form-group mt-2">
+        <button id="registrar_horarios" class="btn-register">
+          <i class="fa-solid fa-user-clock"></i>Registrar Horários
+        </button>
+      </div>
+
 
       <div class="form-group">
         <label for="atividades">ATIVIDADES:</label>
-        <textarea class="form-control" name="atividades" id="atividades" required></textarea>
+        <textarea class="form-control" name="atividades" id="atividades"
+          placeholder="Insira aqui suas atividades"></textarea>
       </div>
 
       <div class="form-group">
         <label for="observacoes_contratante">OBSERVAÇÕES DA CONTRATANTE:</label>
-        <textarea class="form-control" name="observacoes_contratante" id="observacoes_contratante"></textarea>
+        <textarea class="form-control" name="observacoes_contratante" id="observacoes_contratante"
+          placeholder="Insira aqui suas observações"></textarea>
       </div>
 
-      <!-- Seção de Registro Fotográfico -->
+      <!-- Seção de Registro Fotográfico 1 -->
       <div class="form-group">
         <label for="foto">REGISTRO FOTOGRÁFICO 1:</label>
         <input type="file" class="form-control-file" name="foto" id="foto" accept="image/*" />
       </div>
+
+      <!-- Seção para Comentários da Foto 1-->
+      <div class="form-group">
+        <label for="comentario_foto1">COMENTÁRIO FOTO 1:</label>
+        <textarea class="form-control" name="comentario_foto1" id="comentario_foto1"
+          placeholder="Insira seu comentário aqui..."></textarea>
+      </div>
+
+      <!-- Seção de Registro Fotográfico 2-->
       <div class="form-group">
         <label for="foto2">REGISTRO FOTOGRÁFICO 2:</label>
         <input type="file" class="form-control-file" name="foto2" id="foto2" accept="image/*" />
       </div>
+
+      <!-- Seção para Comentários da Foto 2-->
+      <div class="form-group">
+        <label for="comentario_foto2">COMENTÁRIO FOTO 2:</label>
+        <textarea class="form-control" name="comentario_foto2" id="comentario_foto2"
+          placeholder="Insira seu comentário aqui..."></textarea>
+      </div>
+
+      <!-- Seção de Registro Fotográfico 3 -->
       <div class="form-group">
         <label for="foto3">REGISTRO FOTOGRÁFICO 3:</label>
         <input type="file" class="form-control-file" name="foto3" id="foto3" accept="image/*" />
+      </div>
+
+      <!-- Seção para Comentários da Foto 3-->
+      <div class="form-group">
+        <label for="comentario_foto3">COMENTÁRIO FOTO 3:</label>
+        <textarea class="form-control" name="comentario_foto3" id="comentario_foto3"
+          placeholder="Insira seu comentário aqui..."></textarea>
       </div>
 
       <!-- Seção de Condições de Tempo -->
@@ -189,19 +251,39 @@
               {% for i in range(1, 5) %}
               <tr>
                 <td>
-                  <input type="text" name="mo_indireta_desc_{{ i }}" class="form-control" />
+                  <input type="text" name="mo_indireta_desc_{{ i }}" class="form-control" list="opcoes_indireta"
+                    required placeholder="Selecione ou digite..." />
                 </td>
                 <td>
-                  <input type="number" name="mo_indireta_pres_{{ i }}" class="form-control" />
+                  <input type="number" name="mo_indireta_pres_{{ i }}" class="form-control incremental-input" required
+                    placeholder="Clique para gerar" />
                 </td>
                 <td>
-                  <input type="number" name="mo_indireta_fc_{{ i }}" class="form-control" />
+                  <input type="number" name="mo_indireta_fc_{{ i }}" class="form-control  incremental-input" required
+                    placeholder="Clique para gerar" />
                 </td>
               </tr>
               {% endfor %}
             </tbody>
           </table>
         </div>
+
+        <!-- Lista de opções predefinidas para M.O Indireta -->
+        <datalist id="opcoes_indireta">
+          <option value="Engenheiro de Manutenção">
+          <option value="Téc.em Automação">
+          <option value="Especialista em Automação">
+          <option value="Mecânico Industrial">
+          <option value="Eletricista">
+          <option value="Eletricista Montador">
+          <option value="Instrumentista">
+          <option value="Téc. de Inspeção">
+          <option value="Téc. de Segurança do Trabalho">
+          <option value="Planejador de Manutenção">
+          <option value="Operador de Plataforma Elevatoria">
+          <option value="Operador de Guindaste">
+          <option value="Montador de Andaimes">
+        </datalist>
       </fieldset>
 
       <!-- Seção de M.O Direta -->
@@ -220,19 +302,39 @@
               {% for i in range(1, 5) %}
               <tr>
                 <td>
-                  <input type="text" name="mo_direta_desc_{{ i }}" class="form-control" />
+                  <input type="text" name="mo_direta_desc_{{ i }}" class="form-control" list="opcoes_direta" required
+                    placeholder="Selecione ou digite..." />
                 </td>
                 <td>
-                  <input type="number" name="mo_direta_pres_{{ i }}" class="form-control" />
+                  <input type="number" name="mo_direta_pres_{{ i }}" class="form-control incremental-input" required
+                    placeholder="Clique para gerar" />
                 </td>
                 <td>
-                  <input type="number" name="mo_direta_fc_{{ i }}" class="form-control" />
+                  <input type="number" name="mo_direta_fc_{{ i }}" class="form-control incremental-input" required
+                    placeholder="Clique para gerar" />
                 </td>
               </tr>
               {% endfor %}
             </tbody>
           </table>
         </div>
+
+        <!-- Lista de opções predefinidas para M.O Direta -->
+        <datalist id="opcoes_direta">
+          <option value="Engenheiro de Manutenção">
+          <option value="Téc.em Automação">
+          <option value="Especialista em Automação">
+          <option value="Mecânico Industrial">
+          <option value="Eletricista">
+          <option value="Eletricista Montador">
+          <option value="Instrumentista">
+          <option value="Téc. de Inspeção">
+          <option value="Téc. de Segurança do Trabalho">
+          <option value="Planejador de Manutenção">
+          <option value="Operador de Plataforma Elevatoria">
+          <option value="Operador de Guindaste">
+          <option value="Montador de Andaimes">
+        </datalist>
       </fieldset>
 
       <!-- Seção de Subempreiteiros -->
@@ -251,50 +353,108 @@
               {% for i in range(1, 5) %}
               <tr>
                 <td>
-                  <input type="text" name="subempreiteiro_desc_{{ i }}" class="form-control" />
+                  <input type="text" name="subempreiteiro_desc_{{ i }}" class="form-control" list="opcoes_sub" required
+                    placeholder="Selecione ou digite..." />
                 </td>
                 <td>
-                  <input type="number" name="subempreiteiro_pres_{{ i }}" class="form-control" />
+                  <input type="number" name="subempreiteiro_pres_{{ i }}" class="form-control  incremental-input"
+                    required placeholder="Clique para gerar" />
                 </td>
                 <td>
-                  <input type="number" name="subempreiteiro_fc_{{ i }}" class="form-control" />
+                  <input type="number" name="subempreiteiro_fc_{{ i }}" class="form-control incremental-input" required
+                    placeholder="Clique para gerar" />
                 </td>
               </tr>
               {% endfor %}
             </tbody>
           </table>
         </div>
+
+        <!-- Lista de opções predefinidas para Subempreiteiros -->
+        <datalist id="opcoes_sub">
+          <option value="Engenheiro de Manutenção">
+          <option value="Téc.em Automação">
+          <option value="Especialista em Automação">
+          <option value="Mecânico Industrial">
+          <option value="Eletricista">
+          <option value="Eletricista Montador">
+          <option value="Instrumentista">
+          <option value="Téc. de Inspeção">
+          <option value="Téc. de Segurança do Trabalho">
+          <option value="Planejador de Manutenção">
+          <option value="Operador de Plataforma Elevatoria">
+          <option value="Operador de Guindaste">
+          <option value="Montador de Andaimes">
+        </datalist>
       </fieldset>
 
       <!-- Seção de Equipamentos -->
       <fieldset class="equipamentos">
         <legend>Equipamentos</legend>
+
         <div class="table-responsive">
           <table class="table">
             <thead>
               <tr>
                 <th>Descrição</th>
                 <th>Quantidade</th>
+                <th>Data Início</th>
+                <th>Data Término</th>
+                <th>Dias de Aluguel</th>
               </tr>
             </thead>
             <tbody>
               {% for i in range(1, 5) %}
               <tr>
                 <td>
-                  <input type="text" name="equipamentos_desc_{{ i }}" class="form-control" />
+                  <input type="text" name="equipamentos_desc_{{ i }}" class="form-control" list="opcoes_equipamentos"
+                    required placeholder="Selecione ou digite..." />
                 </td>
                 <td>
-                  <input type="number" name="equipamentos_quant_{{ i }}" class="form-control" />
+                  <input type="number" name="equipamentos_quant_{{ i }}" class="form-control  incremental-input"
+                    required placeholder="Clique para gerar" />
+                </td>
+                <td>
+                  <input type="date" name="data_inicio_{{ i }}" id="data_inicio_{{ i }}"
+                    class="form-control data-inicio" />
+                </td>
+                <td>
+                  <input type="date" name="data_termino_{{ i }}" id="data_termino_{{ i }}"
+                    class="form-control data-termino" />
+                </td>
+                <td>
+                  <input type="number" name="total_dias_{{ i }}" id="total_dias_{{ i }}" class="form-control total-dias"
+                    readonly />
                 </td>
               </tr>
               {% endfor %}
             </tbody>
           </table>
+
+          <!-- Lista de opções predefinidas para Equipamentos -->
+          <datalist id="opcoes_equipamentos">
+            <option value="Andaimes Modulares">
+            <option value="Plataformas Elevatórias">
+            <option value="Escadas e Torres de Acesso">
+            <option value="Cintos de Segurança e Linhas de Vida">
+            <option value="Elevadores de Passageiros Temporários">
+            <option value="Guindastes">
+            <option value="Gruas e Mini-Gruas">
+            <option value="Empilhadeiras">
+            <option value="Talhas Elétricas e Manuais">
+            <option value="Parafusadeiras e Furadeiras">
+            <option value="Esmerilhadeiras e Retíficas">
+          </datalist>
         </div>
       </fieldset>
+
+
+      <!-- Botão para Dowload-->
       <button type="submit" class="btn-dwonload">
         <i class="fas fa-download"></i>Download
       </button>
+
+      <!--Botão para Enviar E-mail-->
       <button type="button" class="btn-send" onclick="sendMail()">
         <i class="fas fa-paper-plane"></i>Enviar
       </button>
@@ -307,8 +467,12 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
   <script src="../static/js/app.js"></script>
   <script src="../static/js/sendMail.js"></script>
+  <script src="../static/js/time.js"></script>
   <footer>
-    <p>© Copyright 2024 - Todos os direitos reservados. CNPJ: 30.699.322/0001-31 - Aracruz/ES</p>
+    <p>
+      © Copyright 2024 - Todos os direitos reservados. CNPJ:
+      30.699.322/0001-31 - Aracruz/ES
+    </p>
   </footer>
 </body>
 

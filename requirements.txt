@@ -4,3 +4,5 @@ db-sqlite3==0.0.1
 pillow==10.4.0
 gunicorn==23.0.0
 xlsxwriter==3.2.0
+Python-IO==0.3
+pybase64==1.4.0

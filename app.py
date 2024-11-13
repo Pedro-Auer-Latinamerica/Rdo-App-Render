@@ -1,10 +1,11 @@
 from flask import Flask, render_template, request, send_file, make_response
 import openpyxl
+from PIL import Image as PilImage
 from openpyxl.drawing.image import Image
 from werkzeug.utils import secure_filename
 import os
 import sqlite3
-from PIL import Image as PilImage
+
 
 app = Flask(__name__)
 
@@ -33,7 +34,10 @@ def init_db():
             observacoes TEXT,
             foto TEXT,
             foto2 TEXT,
-            foto3 TEXT
+            foto3 TEXT,
+            comentario_foto1 TEXT,
+            comentario_foto2 TEXT,
+            comentario_foto3 TEXT
         )
     ''')
     conn.commit()
@@ -76,20 +80,24 @@ def atualizar_excel(dados, arquivo_excel):
     ws['R8'] = dados['dia']
     ws['Y14'] = dados['horario_trabalho']
     ws['A27'] = dados['atividades']
-    ws['A61'] = dados['observacoes_contratante']
+    ws['A63'] = dados['observacoes_contratante']
+    ws['A60'] = dados['comentario_foto1']
+    ws['J60'] = dados['comentario_foto2']
+    ws['T60'] = dados['comentario_foto3']
+
     
     # Inserir imagens no "Registro fotográfico" sem alterar a formatação
     if 'foto' in dados and dados['foto']:
-        redimensionar_imagem(dados['foto'], largura_cm=7, altura_cm=6)
+        redimensionar_imagem(dados['foto'], largura_cm=8.84, altura_cm=7.04)
         adicionar_imagem_centralizada(ws, dados['foto'], 'A44')
 
     if 'foto2' in dados and dados['foto2']:
-        redimensionar_imagem(dados['foto2'], largura_cm=7, altura_cm=6)
+        redimensionar_imagem(dados['foto2'], largura_cm=10.48, altura_cm=7.06)
         adicionar_imagem_centralizada(ws, dados['foto2'], 'J44')
 
     if 'foto3' in dados and dados['foto3']:
-        redimensionar_imagem(dados['foto3'], largura_cm=7, altura_cm=6)
-        adicionar_imagem_centralizada(ws, dados['foto3'], 'U44')
+        redimensionar_imagem(dados['foto3'], largura_cm=8.04, altura_cm=7.06)
+        adicionar_imagem_centralizada(ws, dados['foto3'], 'T44')
 
       # Tratando a seleção de 'Condições de Tempo'
 
@@ -240,10 +248,10 @@ def submit_form():
     conn = sqlite3.connect(DATABASE)
     cursor = conn.cursor()
     cursor.execute('''
-        INSERT INTO forms (cliente, contrato, escopo, inicio, termino, dia, horario_trabalho, atividades, observacoes, foto)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        INSERT INTO forms (cliente, contrato, escopo, inicio, termino, dia, horario_trabalho, atividades, observacoes, foto, comentario_foto1, comentario_foto2, comentario_foto3 )
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     ''', (dados['cliente'], dados['contrato'], dados['escopo'], dados['inicio'], dados['termino'], dados['dia'],
-          dados['horario_trabalho'], dados['atividades'], dados['observacoes_contratante'], dados.get('foto')))
+          dados['horario_trabalho'], dados['atividades'], dados['observacoes_contratante'], dados.get('foto'), dados['comentario_foto1'], dados['comentario_foto2'], dados['comentario_foto3']))
     conn.commit()
     conn.close()
 
