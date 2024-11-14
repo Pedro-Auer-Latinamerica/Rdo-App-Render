@@ -88,15 +88,15 @@ def atualizar_excel(dados, arquivo_excel):
     
     # Inserir imagens no "Registro fotográfico" sem alterar a formatação
     if 'foto' in dados and dados['foto']:
-        redimensionar_imagem(dados['foto'], largura_cm=8.84, altura_cm=7.04)
+        redimensionar_imagem(dados['foto'], largura_cm=10.08, altura_cm=7.04)
         adicionar_imagem_centralizada(ws, dados['foto'], 'A44')
 
     if 'foto2' in dados and dados['foto2']:
-        redimensionar_imagem(dados['foto2'], largura_cm=10.48, altura_cm=7.06)
+        redimensionar_imagem(dados['foto2'], largura_cm=12.34, altura_cm=7.04)
         adicionar_imagem_centralizada(ws, dados['foto2'], 'J44')
 
     if 'foto3' in dados and dados['foto3']:
-        redimensionar_imagem(dados['foto3'], largura_cm=8.04, altura_cm=7.06)
+        redimensionar_imagem(dados['foto3'], largura_cm=9.97, altura_cm=7.04)
         adicionar_imagem_centralizada(ws, dados['foto3'], 'T44')
 
       # Tratando a seleção de 'Condições de Tempo'

@@ -31,8 +31,7 @@
     <form id="form" action="/submit" method="POST" enctype="multipart/form-data">
       <div class="form-group">
         <label for="folha">FOLHA:</label>
-        <input type="number" class="form-control incremental-input" name="folha" id="folha" required
-          placeholder="Clique para gerar" />
+        <input type="number" class="form-control" name="folha" id="folha" required placeholder="Selecione ou Digite" />
       </div>
 
       <div class="form-group">
@@ -110,7 +109,7 @@
 
       <div class="form-group">
         <label for="atividades">ATIVIDADES:</label>
-        <textarea class="form-control" name="atividades" id="atividades"
+        <textarea class="form-control" name="atividades" id="atividades" required
           placeholder="Insira aqui suas atividades"></textarea>
       </div>
 
@@ -252,15 +251,15 @@
               <tr>
                 <td>
                   <input type="text" name="mo_indireta_desc_{{ i }}" class="form-control" list="opcoes_indireta"
-                     placeholder="Selecione ou digite..." />
+                    placeholder="Selecione ou digite..." />
                 </td>
                 <td>
-                  <input type="number" name="mo_indireta_pres_{{ i }}" class="form-control incremental-input" 
-                    placeholder="Clique para gerar" />
+                  <input type="number" name="mo_indireta_pres_{{ i }}" class="form-control"
+                    placeholder="Selecione ou Digite" />
                 </td>
                 <td>
-                  <input type="number" name="mo_indireta_fc_{{ i }}" class="form-control  incremental-input" 
-                    placeholder="Clique para gerar" />
+                  <input type="number" name="mo_indireta_fc_{{ i }}" class="form-control"
+                    placeholder="Selecione ou Digite" />
                 </td>
               </tr>
               {% endfor %}
@@ -279,7 +278,8 @@
           <option value="Instrumentista">
           <option value="Téc. de Inspeção">
           <option value="Téc. de Segurança do Trabalho">
-          <option value="Planejador de Manutenção">
+          <option value="Planejador">
+          <option value="Coordenador de Projetos">
           <option value="Operador de Plataforma Elevatoria">
           <option value="Operador de Guindaste">
           <option value="Montador de Andaimes">
@@ -302,16 +302,16 @@
               {% for i in range(1, 5) %}
               <tr>
                 <td>
-                  <input type="text" name="mo_direta_desc_{{ i }}" class="form-control" list="opcoes_direta" 
+                  <input type="text" name="mo_direta_desc_{{ i }}" class="form-control" list="opcoes_direta"
                     placeholder="Selecione ou digite..." />
                 </td>
                 <td>
-                  <input type="number" name="mo_direta_pres_{{ i }}" class="form-control incremental-input" 
-                    placeholder="Clique para gerar" />
+                  <input type="number" name="mo_direta_pres_{{ i }}" class="form-control"
+                    placeholder="Selecione ou Digite" />
                 </td>
                 <td>
-                  <input type="number" name="mo_direta_fc_{{ i }}" class="form-control incremental-input" 
-                    placeholder="Clique para gerar" />
+                  <input type="number" name="mo_direta_fc_{{ i }}" class="form-control"
+                    placeholder="Selecione ou Digite" />
                 </td>
               </tr>
               {% endfor %}
@@ -330,7 +330,8 @@
           <option value="Instrumentista">
           <option value="Téc. de Inspeção">
           <option value="Téc. de Segurança do Trabalho">
-          <option value="Planejador de Manutenção">
+          <option value="Planejador">
+          <option value="Coordenador de Projetos">
           <option value="Operador de Plataforma Elevatoria">
           <option value="Operador de Guindaste">
           <option value="Montador de Andaimes">
@@ -353,16 +354,16 @@
               {% for i in range(1, 5) %}
               <tr>
                 <td>
-                  <input type="text" name="subempreiteiro_desc_{{ i }}" class="form-control" list="opcoes_sub" 
+                  <input type="text" name="subempreiteiro_desc_{{ i }}" class="form-control" list="opcoes_sub"
                     placeholder="Selecione ou digite..." />
                 </td>
                 <td>
-                  <input type="number" name="subempreiteiro_pres_{{ i }}" class="form-control  incremental-input"
-                     placeholder="Clique para gerar" />
+                  <input type="number" name="subempreiteiro_pres_{{ i }}" class="form-control"
+                    placeholder="Selecione ou Digite" />
                 </td>
                 <td>
-                  <input type="number" name="subempreiteiro_fc_{{ i }}" class="form-control incremental-input" 
-                    placeholder="Clique para gerar" />
+                  <input type="number" name="subempreiteiro_fc_{{ i }}" class="form-control"
+                    placeholder="Selecione ou Digite" />
                 </td>
               </tr>
               {% endfor %}
@@ -381,7 +382,8 @@
           <option value="Instrumentista">
           <option value="Téc. de Inspeção">
           <option value="Téc. de Segurança do Trabalho">
-          <option value="Planejador de Manutenção">
+          <option value="Planejador">
+          <option value="Coordenador de Projetos">
           <option value="Operador de Plataforma Elevatoria">
           <option value="Operador de Guindaste">
           <option value="Montador de Andaimes">
@@ -408,11 +410,11 @@
               <tr>
                 <td>
                   <input type="text" name="equipamentos_desc_{{ i }}" class="form-control" list="opcoes_equipamentos"
-                     placeholder="Selecione ou digite..." />
+                    placeholder="Selecione ou digite..." />
                 </td>
                 <td>
-                  <input type="number" name="equipamentos_quant_{{ i }}" class="form-control  incremental-input"
-                     placeholder="Clique para gerar" />
+                  <input type="number" name="equipamentos_quant_{{ i }}" class="form-control"
+                    placeholder="Selecione ou Digite" />
                 </td>
                 <td>
                   <input type="date" name="data_inicio_{{ i }}" id="data_inicio_{{ i }}"
